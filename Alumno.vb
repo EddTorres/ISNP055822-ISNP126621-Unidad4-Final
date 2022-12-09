@@ -62,7 +62,7 @@ Public Class Alumno
     End Property
 
     'Función para mostrar lista de estudiantes
-    Public Function listRegistros() As DataTable
+    Public Function listarRegistros() As DataTable
         'hace referencia a la instancia de la clase conexión
         c.strcon.Open()
         With c.cmd
@@ -71,6 +71,7 @@ Public Class Alumno
             'consulta de la tabla estudiante
             .CommandText = "SELECT idestudiante, nombre, apellido,correo, telefono,codigo FROM estudiante"
         End With
+        c.da.SelectCommand = c.cmd
         c.da.Fill(c.dt)
         Return c.dt
     End Function

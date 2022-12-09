@@ -4,13 +4,14 @@
         <br />
     </p>
 
-    <p>
-        <br />
-    </p>
+
     <p class="text-center" style="font-size: large">
         <strong>LISTADO DE </strong>A<span style="font-weight: bold">LUMNOS</span></p>
-    <p>
-    </p>
-    <p>
-    </p>
+
+    <br />
+
+    <asp:placeholder ID="estudiantes" runat="server" />
+
+    <br />
+
 </asp:Content>

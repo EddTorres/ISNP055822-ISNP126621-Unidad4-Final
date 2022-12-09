@@ -12,4 +12,13 @@ Option Explicit On
 
 
 Partial Public Class Alumno1
+
+    '''<summary>
+    '''Control estudiantes.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents estudiantes As Global.System.Web.UI.WebControls.PlaceHolder
 End Class
