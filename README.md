@@ -27,9 +27,9 @@ Estos parámetros deben crearse para la base de datos de MySQL.
 Ingrese a http://localhost/phpmyadmin/ para administrar la base de datos.
 
 Los archivos de ejemplo funcionales y completos son:
-conexion.vb
-Alumno.vb
-AgregarAlumno.aspx
-EditarAlumno.aspx
+conexion.vb,
+Alumno.vb,
+AgregarAlumno.aspx,
+EditarAlumno.aspx,
 EliminarAlumno.aspx
 
