@@ -2,6 +2,7 @@
 
     Inherits System.Web.UI.Page
 
+    'llamada de clase Alumno para usar sus métodos
     Dim alumno As New Alumno
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -26,6 +27,7 @@
             html.Append("<th>Correo</th>")
             html.Append("<th>Telefono</th>")
             html.Append("<th>Código</th>")
+            html.Append("<th cols=3>Acciones</th>")
             html.Append("</tr>")
             html.Append("</thead>")
 
@@ -58,6 +60,17 @@
                 html.Append("</td>")
                 html.Append("<td>")
                 html.Append(dt.Rows(i).Item("codigo"))
+                html.Append("</td>")
+
+                'Columnas para Agregar, Editar,Eliminar
+                html.Append("<td>")
+                html.Append("<a href = AgregarAlumno.aspx>Agregar</a>")
+                html.Append("</td>")
+                html.Append("<td>")
+                html.Append("<a href = 'EditarAlumno.aspx?Alumno= " & codigo & "' dt.Rows(i).Item('idestudiante') >Editar</a>")
+                html.Append("</td>")
+                html.Append("<td>")
+                html.Append("<a href = 'EliminarAlumno.aspx?Alumno= " & codigo & "' dt.Rows(i).Item('idestudiante') >Eliminar</a>")
                 html.Append("</td>")
 
                 html.Append("</tr>")

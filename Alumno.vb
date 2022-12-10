@@ -5,6 +5,7 @@ Public Class Alumno
     'Instancia de la conexion
     Dim c As New conexion
 
+    Private IdAlumno As String
     Private codigoAlumno As String
     Private nombreAlumno As String
     Private apellidoAlumno As String
@@ -13,6 +14,16 @@ Public Class Alumno
     Private pagina As Page
 
     'Metodos de la propiedad
+    Public Property ideAlumno() As String
+        Get
+            Return IdAlumno
+
+        End Get
+        Set(value As String)
+            IdAlumno = value
+        End Set
+    End Property
+
     Public Property codAlumno() As String
         Get
             Return codigoAlumno
@@ -83,7 +94,7 @@ Public Class Alumno
             c.strcon.Open()
             With c.cmd
                 .Connection = c.strcon
-                .CommandText = "INSERT INTO estudiante values ('" & nomAlumno & "','" & apeAlumno & "','" & mailAlumno & "','" & telAlumno & "','" & codAlumno & "')"
+                .CommandText = "INSERT INTO estudiante values ('""','" & nomAlumno & "','" & apeAlumno & "','" & mailAlumno & "','" & telAlumno & "','" & codAlumno & "')"
                 c.result = c.cmd.ExecuteNonQuery
             End With
             If c.result = 0 Then
@@ -97,6 +108,7 @@ Public Class Alumno
         c.strcon.Close()
     End Sub
 
+
     'Método para editar, mostrar registro por Id
     'Para utilizar con otra clase, cambie el nombre de la tabla
     'Cambie los nombres de los campos que quiere mostrar en el formulario
@@ -104,13 +116,14 @@ Public Class Alumno
         c.strcon.Open()
         With c.cmd
             .Connection = c.strcon
-            .CommandText = "SELECT idestudiante,nombre,apellido,correo,telefono,codigo FROM estudiante where idestudiante = '" & codAlumno & "' "
+            .CommandText = "SELECT idestudiante,nombre,apellido,correo,telefono,codigo FROM estudiante where codigo = '" & codAlumno & "' "
             c.result = c.cmd.ExecuteNonQuery
         End With
         c.da.SelectCommand = c.cmd
         c.da.Fill(c.dt)
         Return c.dt
     End Function
+
 
     'Metodo para actualizr registros
     'Para utilizar con otra clase, cambie nombre de tabla y de los campos que se van actualizar
@@ -140,5 +153,19 @@ Public Class Alumno
         End Try
         c.strcon.Close()
     End Sub
+
+    Public Function generarCodigo(ByVal nombre As String)
+
+        Dim valor1 As String
+        Dim valor2 As String
+        Dim numero As Single
+
+        valor1 = UCase(Left(nombre, 1))
+        valor2 = Right(nombre, 2)
+        numero = Int(Rnd() * 1000) + 65
+
+        Return valor1 & numero & valor2
+
+    End Function
 
 End Class
