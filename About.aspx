@@ -2,12 +2,18 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
-    <p>Your app description page.</p>
-    <p>Use this area to provide additional information.</p>
+    <p>Indicaciones para uso del proyecto de ejemplo.</p>
+    <p>Puede encontrar script de la base de datos academica, en el 
+        directorio principal.</p>
 
 <pre>
 
-Proyecto de visual basic en modo web form, con almacenamiento y CRUD en base de datos MySQL, incluye clases Alumno, Docente, Materia y Usuario. NOTA: Este ejemplo solo inclye clase Alumno y su respectivo formulario con CRUD completo, las otras clases y formularios están vacíos, deben completarse.
+Proyecto de visual basic en modo web form, con almacenamiento y CRUD 
+en base de datos MySQL, incluye clases Alumno, Docente, Materia y Usuario. 
+    
+NOTA: Este ejemplo solo inclye clase Alumno y su respectivo formulario 
+con CRUD completo, las otras clases y formularios están vacíos, deben 
+completarse.
 
 SQL de tabla utilizada.
 
