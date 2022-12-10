@@ -15,7 +15,12 @@
             'Crear variable String para html
             Dim html As New StringBuilder()
 
+            'Enlace para agregar nuevo Alumno
+
+            '<a href = AgregarAlumno.aspx > Agregar</a>
+
             'Creando HTML para mostrar en forma tabla
+            html.Append("<thead>")
             html.Append("<table class = 'table table-striped'>")
 
             'Encabezados de la tabla
@@ -36,6 +41,7 @@
             'Mostrar los datos en filas, segun cantidad de registros
             'en la tabla
             For i = 0 To dt.Rows.Count - 1
+
                 Dim codigo As Integer = dt.Rows(i).Item("idestudiante")
 
                 'Creamos una fila
@@ -64,13 +70,10 @@
 
                 'Columnas para Agregar, Editar,Eliminar
                 html.Append("<td>")
-                html.Append("<a href = AgregarAlumno.aspx>Agregar</a>")
+                html.Append("<a href = 'EditarAlumno.aspx?Alumno=" & codigo & "' dt.Rows(i).Item('codigo') >Editar</a>")
                 html.Append("</td>")
                 html.Append("<td>")
-                html.Append("<a href = 'EditarAlumno.aspx?Alumno= " & codigo & "' dt.Rows(i).Item('idestudiante') >Editar</a>")
-                html.Append("</td>")
-                html.Append("<td>")
-                html.Append("<a href = 'EliminarAlumno.aspx?Alumno= " & codigo & "' dt.Rows(i).Item('idestudiante') >Eliminar</a>")
+                html.Append("<a href = 'EliminarAlumno.aspx?Alumno=" & codigo & "' dt.Rows(i).Item('codigo') >Eliminar</a>")
                 html.Append("</td>")
 
                 html.Append("</tr>")
@@ -92,4 +95,9 @@
 
     End Sub
 
+    Protected Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
+
+        Response.Redirect("AgregarAlumno.aspx")
+
+    End Sub
 End Class

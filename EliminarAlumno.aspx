@@ -18,6 +18,19 @@
                 &nbsp;</td>
         </tr>
         <tr>
+            <td class="text-right" style="width: 114px">Id</td>
+            <td style="width: 33px">&nbsp;</td>
+            <td style="width: 561px">
+                <asp:TextBox ID="TxtId" runat="server" Width="122px" Enabled="False" ReadOnly="True"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-right" style="width: 114px">&nbsp;</td>
+            <td style="width: 33px">&nbsp;</td>
+            <td style="width: 561px">
+                &nbsp;</td>
+        </tr>
+        <tr>
             <td class="text-right" style="width: 114px">Nombre</td>
             <td style="width: 33px">&nbsp;</td>
             <td style="width: 561px">
@@ -69,7 +82,7 @@
             <td class="text-right" style="width: 114px">Código</td>
             <td style="width: 33px">&nbsp;</td>
             <td style="width: 561px">
-                <asp:TextBox ID="TxtCodigo" runat="server" Width="122px"></asp:TextBox>
+                <asp:TextBox ID="TxtCodigo" runat="server" Width="122px" Enabled="False"></asp:TextBox>
 &nbsp;
                 </td>
         </tr>

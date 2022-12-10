@@ -4,10 +4,6 @@
     'llamada de clase Alumno para usar sus métodos
     Dim alumno As New Alumno
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
-    End Sub
-
     Protected Sub btnGenerarCodigo_Click(sender As Object, e As EventArgs) Handles btnGenerarCodigo.Click
 
         If txtNombre.Text = "" Then
@@ -44,7 +40,8 @@
             TxtTelefono.Text = ""
             TxtCodigo.Text = ""
 
-            'Redireccionamos de nuevo a la página listado estudiantes
+            'Después de guardar volvemos a listado Alumnos
+            'Redireccionamos de nuevo a la página listado Alumnos
             Response.Redirect("Alumno.aspx")
         Else
             'En el caso seleccione que no quiere agregar registro
@@ -58,4 +55,14 @@
 
     End Sub
 
+    Protected Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
+
+        'Si damos clic en cancelar volvemos a listado Alumnos
+        Response.Redirect("Alumno.aspx")
+
+    End Sub
+
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+    End Sub
 End Class

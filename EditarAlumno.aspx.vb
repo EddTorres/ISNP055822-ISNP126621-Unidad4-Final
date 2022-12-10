@@ -6,7 +6,8 @@
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        alumno.codAlumno = Request.QueryString("Alumno")
+        'Comparamos el código pasado como parámetro
+        alumno.idAlumno = Request.QueryString("Alumno")
 
         If Not Me.IsPostBack Then
             'llenado de DataTable con los datos de Alumno
@@ -64,4 +65,10 @@
         End If
     End Sub
 
+    Protected Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
+
+        'Si cancelamos, volvemos a la página listado Alumnos
+        Response.Redirect("Alumno.aspx")
+
+    End Sub
 End Class

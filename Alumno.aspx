@@ -8,6 +8,8 @@
     <p class="text-center" style="font-size: large">
         <strong>LISTADO DE </strong>A<span style="font-weight: bold">LUMNOS</span></p>
 
+    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" Width="131px" />
+
     <br />
 
     <asp:placeholder ID="estudiantes" runat="server" />

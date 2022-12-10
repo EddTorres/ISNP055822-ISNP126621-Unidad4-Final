@@ -5,34 +5,26 @@ Public Class Alumno
     'Instancia de la conexion
     Dim c As New conexion
 
-    Private IdAlumno As String
+    Private Id As String
     Private codigoAlumno As String
     Private nombreAlumno As String
     Private apellidoAlumno As String
     Private correoAlumno As String
     Private telefonoAlumno As String
+
     Private pagina As Page
 
     'Metodos de la propiedad
-    Public Property ideAlumno() As String
+    Public Property idAlumno() As String
         Get
-            Return IdAlumno
+            Return Id
 
         End Get
         Set(value As String)
-            IdAlumno = value
+            Id = value
         End Set
     End Property
 
-    Public Property codAlumno() As String
-        Get
-            Return codigoAlumno
-
-        End Get
-        Set(value As String)
-            codigoAlumno = value
-        End Set
-    End Property
     Public Property nomAlumno() As String
         Get
             Return nombreAlumno
@@ -72,6 +64,16 @@ Public Class Alumno
         End Set
     End Property
 
+    Public Property codAlumno() As String
+        Get
+            Return codigoAlumno
+
+        End Get
+        Set(value As String)
+            codigoAlumno = value
+        End Set
+    End Property
+
     'Función para mostrar lista de estudiantes
     Public Function listarRegistros() As DataTable
         'hace referencia a la instancia de la clase conexión
@@ -86,6 +88,25 @@ Public Class Alumno
         c.da.Fill(c.dt)
         Return c.dt
     End Function
+
+
+    'Método para editar, mostrar registro por Id
+    'Para utilizar con otra clase, cambie el nombre de la tabla
+    'Cambie los nombres de los campos que quiere mostrar en el formulario
+    Public Function mostrarRegistro() As DataTable
+        c.strcon.Open()
+        With c.cmd
+            .Connection = c.strcon
+            'Obtener los campos de la tabla si el identificador idestudiante es igual a idAlumno
+            'Parámetro que se pasa al dar clic en Editar o Eliminar.
+            .CommandText = "SELECT idestudiante,nombre,apellido,correo,telefono,codigo FROM estudiante where idestudiante = '" & idAlumno & "' "
+            c.result = c.cmd.ExecuteNonQuery
+        End With
+        c.da.SelectCommand = c.cmd
+        c.da.Fill(c.dt)
+        Return c.dt
+    End Function
+
 
 
     'Método para guardar
@@ -109,21 +130,6 @@ Public Class Alumno
     End Sub
 
 
-    'Método para editar, mostrar registro por Id
-    'Para utilizar con otra clase, cambie el nombre de la tabla
-    'Cambie los nombres de los campos que quiere mostrar en el formulario
-    Public Function mostrarRegistro() As DataTable
-        c.strcon.Open()
-        With c.cmd
-            .Connection = c.strcon
-            .CommandText = "SELECT idestudiante,nombre,apellido,correo,telefono,codigo FROM estudiante where codigo = '" & codAlumno & "' "
-            c.result = c.cmd.ExecuteNonQuery
-        End With
-        c.da.SelectCommand = c.cmd
-        c.da.Fill(c.dt)
-        Return c.dt
-    End Function
-
 
     'Metodo para actualizr registros
     'Para utilizar con otra clase, cambie nombre de tabla y de los campos que se van actualizar
@@ -132,12 +138,13 @@ Public Class Alumno
             c.strcon.Open()
             With c.cmd
                 .Connection = c.strcon
-                .CommandText = "UPDATE estudiante SET 
-                                nombre ='" & nomAlumno & "',
-                                apellido = '" & apeAlumno & "',
-                                correo = '" & mailAlumno & "',
-                                telefono = '" & telAlumno & "',
-                                codigo = '" & codAlumno & "')"
+                .CommandText = "UPDATE estudiante SET nombre ='" & nomAlumno & "', apellido = '" & apeAlumno & "', correo = '" & mailAlumno & "', telefono = '" & telAlumno & "' WHERE idestudiante = '" & idAlumno & "' "
+
+                'Estos dos campos no son editables, no es necesario actualizar
+                'porque no pueden modificarse.
+                'idestudiante ='" & idAlumno & "'
+                'codigo = '" & codAlumno & "'
+
 
                 c.result = c.cmd.ExecuteNonQuery
             End With
@@ -153,6 +160,32 @@ Public Class Alumno
         End Try
         c.strcon.Close()
     End Sub
+
+    'Función para eliminar estudiante seleccionado
+    Public Sub eliminar()
+        Try
+            'hace referencia a la instancia de la clase conexión
+            c.strcon.Open()
+            With c.cmd
+                'cadena de conexión
+                .Connection = c.strcon
+                'consulta de la tabla estudiante
+                .CommandText = "DELETE FROM estudiante where idestudiante = '" & idAlumno & "' "
+                c.result = c.cmd.ExecuteNonQuery
+            End With
+
+            If c.result = 0 Then
+                MsgBox("No se ha podido eliminar", MsgBoxStyle.Critical)
+            Else
+                MsgBox("Registro eliminado exitosamente", MsgBoxStyle.OkOnly)
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        c.strcon.Close()
+    End Sub
+
 
     Public Function generarCodigo(ByVal nombre As String)
 
